@@ -1,0 +1,5 @@
+{
+  "pcname": "host1",
+  "installed_packages": "eix-installed -a",
+  "port": 3001
+}
