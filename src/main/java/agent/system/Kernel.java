@@ -22,4 +22,9 @@ public class Kernel {
     public void setCreated(String created) {
         this.created = created;
     }
+
+    public String toString()
+    {
+        return "Version: " + this.version + " created at " + created;
+    }
 }

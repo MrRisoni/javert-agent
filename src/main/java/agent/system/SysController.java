@@ -1,5 +1,6 @@
 package agent.system;
 
+import agent.utils.SystemInfo;
 import agent.utils.Utilities;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,24 +44,13 @@ public class SysController {
 
     @GetMapping("/kernel")
     public Kernel kernelData() {
-        Kernel kern = new Kernel();
 
         try {
-            String dfOut;
-
-            BufferedReader br = Utilities.runLinuxCommand("uname -r");
-
-            while ((dfOut = br.readLine()) != null) {
-                System.out.println("line: " + dfOut);
-                kern.setVersion(dfOut);
-            }
-            Utilities.terminateCommand();
-            return kern;
-
+            return SystemInfo.kernelData();
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
-            return kern;
+            return null;
 
         }
     }
