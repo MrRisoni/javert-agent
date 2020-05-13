@@ -4,3 +4,5 @@ agent/target
 *.jar
 *.class
 target/
+.idea/workspace.xml
+.idea/libraries
