@@ -1,6 +1,6 @@
 package agent.system;
 
-public class Process {
+public class SysProc {
     // ps aux
     private String user;
     private int pid;
@@ -8,7 +8,7 @@ public class Process {
     private float mem;
     private String command;
 
-    public Process() {
+    public SysProc() {
     }
 
     public String getUser() {

@@ -1,9 +1,7 @@
 package agent.system;
 
-import agent.disk.Partition;
 import agent.utils.Utilities;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -49,7 +47,7 @@ public class SysController {
 
         try {
             String dfOut;
-            Process p;
+
             BufferedReader br = Utilities.runLinuxCommand("uname -r");
 
             while ((dfOut = br.readLine()) != null) {
@@ -57,16 +55,6 @@ public class SysController {
                 kern.setVersion(dfOut);
             }
             Utilities.terminateCommand();
-
-            p = Runtime.getRuntime().exec("uname -v");
-            br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((dfOut = br.readLine()) != null) {
-                System.out.println("line: " + dfOut);
-                kern.setCreated(dfOut);
-            }
-            p.waitFor();
-            p.destroy();
-
             return kern;
 
         } catch (Exception e) {
