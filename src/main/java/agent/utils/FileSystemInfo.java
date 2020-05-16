@@ -1,6 +1,7 @@
 package agent.utils;
 
 import agent.disk.Partition;
+import agent.disk.ZPool;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,13 +9,14 @@ import java.util.ArrayList;
 
 public class FileSystemInfo {
 
-    public static String getZpoolStatus() {
+    public static ArrayList<ZPool> getZpoolStatus() {
         String dfOut;
-        ArrayList<Partition> zfslist = new ArrayList<>();
+        ArrayList<ZPool> pool = new ArrayList<>();
 
         BufferedReader br = Utilities.runLinuxCommand("zpool status");
         int foundName = 0;
         int foundBlankLine = 0;
+        int readNewLine= 0;
         try {
             while ((dfOut = br.readLine()) != null) {
 
@@ -23,21 +25,26 @@ public class FileSystemInfo {
                     if (after.contains("NAME STATE")) {
                         foundName = 1;
                     }
-                    // String[] split = after.split(" ");
-                    if (foundName == 1) {
+                    if (foundName == 1 && readNewLine == 1) {
                         System.out.println(after);
-                        if (after.length() <1) {
+                         String[] split = after.split(" ");
+                        pool.add(new ZPool(split[0],split[1]));
+
+                        if (after.length() < 1) {
                             foundBlankLine = 1;
                         }
+                    }
+                    if (foundName == 1 && readNewLine == 0) {
+                        readNewLine = 1;
                     }
                 }
             }
 
-            return "Foo";
+            return pool;
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
-            return "Foo";
+            return pool;
 
         }
     }

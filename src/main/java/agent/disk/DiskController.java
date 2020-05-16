@@ -15,10 +15,12 @@ public class DiskController {
 
 
     @GetMapping("/zpool")
-    public String ZFSPool() {
+    public ZPoolResponse ZFSPool() {
         try {
-
-            return FileSystemInfo.getZpoolStatus();
+            ZPoolResponse presp = new ZPoolResponse();
+            presp.setHostName(Utilities.getHostName());
+            presp.setPartitions(FileSystemInfo.getZpoolStatus());
+            return presp;
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
