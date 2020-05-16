@@ -8,22 +8,29 @@ import java.util.ArrayList;
 
 public class FileSystemInfo {
 
-    public static  String getZpoolStatus() {
+    public static String getZpoolStatus() {
         String dfOut;
         ArrayList<Partition> zfslist = new ArrayList<>();
 
         BufferedReader br = Utilities.runLinuxCommand("zpool status");
-        int lineCount =0;
+        int foundName = 0;
+        int foundBlankLine = 0;
         try {
             while ((dfOut = br.readLine()) != null) {
-                // skip NAME                   USED  AVAIL  REFER  MOUNTPOINT
-                if (lineCount >0) {
-                    String after = dfOut.trim().replaceAll(" +", " ");
-                   // String[] split = after.split(" ");
-System.out.println(after);
 
+                if (foundBlankLine == 0) {
+                    String after = dfOut.trim().replaceAll(" +", " ");
+                    if (after.contains("NAME STATE")) {
+                        foundName = 1;
+                    }
+                    // String[] split = after.split(" ");
+                    if (foundName == 1) {
+                        System.out.println(after);
+                        if (after.length() <1) {
+                            foundBlankLine = 1;
+                        }
+                    }
                 }
-                lineCount++;
             }
 
             return "Foo";
@@ -40,11 +47,11 @@ System.out.println(after);
         ArrayList<Partition> zfslist = new ArrayList<>();
 
         BufferedReader br = Utilities.runLinuxCommand("zfs list");
-        int lineCount =0;
+        int lineCount = 0;
         try {
             while ((dfOut = br.readLine()) != null) {
                 // skip NAME                   USED  AVAIL  REFER  MOUNTPOINT
-                if (lineCount >0) {
+                if (lineCount > 0) {
                     String after = dfOut.trim().replaceAll(" +", " ");
                     String[] split = after.split(" ");
 
