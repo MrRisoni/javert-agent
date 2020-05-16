@@ -14,15 +14,18 @@ public class FileSystemInfo {
         ArrayList<Partition> zfslist = new ArrayList<>();
 
         BufferedReader br = Utilities.runLinuxCommand("zfs list");
+        int lineCount =0;
         try {
             while ((dfOut = br.readLine()) != null) {
-                String after = dfOut.trim().replaceAll(" +", " ");
-                String[] split = after.split(" ");
+                // skip NAME                   USED  AVAIL  REFER  MOUNTPOINT
+                if (lineCount >0) {
+                    String after = dfOut.trim().replaceAll(" +", " ");
+                    String[] split = after.split(" ");
 
-                System.out.println(split);
-
-                Partition prt = new Partition(split[0], split[1], split[2], split[3], split[4]);
-                zfslist.add(prt);
+                    Partition prt = new Partition(split[0], split[1], split[2], split[3], split[4]);
+                    zfslist.add(prt);
+                }
+                lineCount++;
             }
 
             return zfslist;
