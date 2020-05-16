@@ -37,4 +37,9 @@ public class Partition {
   public String getMounted() {
     return this.Mounted;
   }
+
+    public String toString()
+    {
+        return "NAME " + this.FileSystem + "  USED " + this.Used+ " AVAIL " + this.Avail + "  MOUNTPOINT " + this.Mounted;
+    }
 }
