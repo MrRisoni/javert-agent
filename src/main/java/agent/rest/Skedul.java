@@ -63,7 +63,7 @@ public class Skedul {
             ex.printStackTrace();
         }
     }
-*/
+
     @Scheduled(fixedRate = 5000)
     public void anotherRerouse() {
         ArrayList<Partition> zfsl = FileSystemInfo.getZFSList();
@@ -89,4 +89,6 @@ public class Skedul {
             ex.printStackTrace();
         }
     }
+
+   */
 }

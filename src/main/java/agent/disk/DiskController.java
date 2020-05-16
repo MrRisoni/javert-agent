@@ -1,5 +1,6 @@
 package agent.disk;
 
+import agent.utils.FileSystemInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,18 @@ import java.util.ArrayList;
 
 @RestController
 public class DiskController {
+
+    @GetMapping("/zfslist")
+    public ArrayList<Partition> ZFSList() {
+        try {
+            return (FileSystemInfo.getZFSList());
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
 
 
     @GetMapping("/partitions")
