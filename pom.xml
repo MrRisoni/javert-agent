@@ -10,7 +10,7 @@
     </parent>
     <groupId>agent</groupId>
     <artifactId>javert-agent</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>rest-service</name>
     <description>Java Agent</description>
 
