@@ -13,6 +13,21 @@ import java.util.ArrayList;
 @RestController
 public class DiskController {
 
+
+    @GetMapping("/zpool")
+    public String ZFSPool() {
+        try {
+
+            return FileSystemInfo.getZpoolStatus();
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+
+
     @GetMapping("/zfslist")
     public PartitionResponse ZFSList() {
         try {

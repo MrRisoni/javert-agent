@@ -8,6 +8,32 @@ import java.util.ArrayList;
 
 public class FileSystemInfo {
 
+    public static  String getZpoolStatus() {
+        String dfOut;
+        ArrayList<Partition> zfslist = new ArrayList<>();
+
+        BufferedReader br = Utilities.runLinuxCommand("zpool status");
+        int lineCount =0;
+        try {
+            while ((dfOut = br.readLine()) != null) {
+                // skip NAME                   USED  AVAIL  REFER  MOUNTPOINT
+                if (lineCount >0) {
+                    String after = dfOut.trim().replaceAll(" +", " ");
+                   // String[] split = after.split(" ");
+System.out.println(after);
+
+                }
+                lineCount++;
+            }
+
+            return "Foo";
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return "Foo";
+
+        }
+    }
 
     public static ArrayList<Partition> getZFSList() {
         String dfOut;
