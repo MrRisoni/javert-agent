@@ -42,6 +42,23 @@ public class SysController {
         }
     }
 
+    @GetMapping("/sysproc")
+    public SysProcResponse systemProcess() {
+
+        try {
+            SysProcResponse procrsp = new SysProcResponse();
+            procrsp.setHostName(Utilities.getHostName());
+            procrsp.setSysproclist(SystemInfo.getSystemProccesses());
+            return procrsp;
+        } catch (Exception e) {
+            System.out.println("Error");
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+
+
     @GetMapping("/kernel")
     public Kernel kernelData() {
 

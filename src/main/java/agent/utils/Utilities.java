@@ -57,10 +57,8 @@ public class Utilities {
     public static BufferedReader runLinuxCommand(String cmd) {
 
         try {
-
             p = Runtime.getRuntime().exec(cmd);
-            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            return br;
+            return new BufferedReader(new InputStreamReader(p.getInputStream()));
         }
         catch (Exception ex) {
             ex.printStackTrace();
