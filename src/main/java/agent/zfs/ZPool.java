@@ -6,8 +6,8 @@ public class ZPool {
     private  String State;
 
     public ZPool(String disk, String state) {
-        disk = disk;
-        State = state;
+        this.disk = disk;
+        this.State = state;
     }
 
     public String getDisk() {

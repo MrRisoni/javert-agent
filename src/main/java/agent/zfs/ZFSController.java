@@ -18,7 +18,7 @@ public class ZFSController {
             return presp;
         } catch (Exception e) {
             System.out.println("Error");
-            e.printStackTrace();
+          System.out.println(e.getMessage());
             return null;
 
         }
