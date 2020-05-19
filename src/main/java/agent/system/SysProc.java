@@ -4,8 +4,8 @@ public class SysProc {
     // ps aux
     private String user;
     private int pid;
-    private float cpu;
-    private float mem;
+    private String cpu;
+    private String mem;
     private String command;
 
     public SysProc() {
@@ -27,19 +27,19 @@ public class SysProc {
         this.pid = pid;
     }
 
-    public float getCpu() {
+    public String getCpu() {
         return cpu;
     }
 
-    public void setCpu(float cpu) {
+    public void setCpu(String cpu) {
         this.cpu = cpu;
     }
 
-    public float getMem() {
+    public String getMem() {
         return mem;
     }
 
-    public void setMem(float mem) {
+    public void setMem(String mem) {
         this.mem = mem;
     }
 

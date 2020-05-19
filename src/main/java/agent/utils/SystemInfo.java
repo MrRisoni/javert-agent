@@ -4,6 +4,7 @@ import agent.system.Kernel;
 import agent.system.SysProc;
 
 import java.io.BufferedReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class SystemInfo {
@@ -17,6 +18,10 @@ public class SystemInfo {
             BufferedReader br = Utilities.runLinuxCommand("ps aux");
             System.out.println("print ps aux");
             int headers = 0;
+
+            DecimalFormat decimals = new DecimalFormat("0.00");
+
+
             while ((dfOut = br.readLine()) != null) {
                 if (headers >0) {
                     System.out.println(dfOut);
@@ -27,8 +32,8 @@ public class SystemInfo {
                     SysProc proc = new SysProc();
                     proc.setUser(split[0]);
                     proc.setPid(Integer.parseInt(split[1]));
-                    proc.setCpu(Float.parseFloat(split[2]));
-                    proc.setMem(Float.parseFloat(split[3]));
+                    proc.setCpu(split[2]);
+                    proc.setMem(split[3]);
                     proc.setCommand(split[10]);
 
                     sysprocs.add(proc);
