@@ -1,10 +1,9 @@
 package agent.utils;
 
 import agent.disk.Partition;
-import agent.disk.ZPool;
+import agent.zfs.ZPool;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class FileSystemInfo {

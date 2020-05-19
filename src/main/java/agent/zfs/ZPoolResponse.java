@@ -1,4 +1,4 @@
-package agent.disk;
+package agent.zfs;
 
 import java.util.ArrayList;
 
@@ -12,13 +12,12 @@ public class ZPoolResponse {
 
     }
 
-
-    public ArrayList<ZPool> getPartitions() {
+    public ArrayList<ZPool> getPool() {
         return pool;
     }
 
-    public void setPartitions(ArrayList<ZPool> partitions) {
-        this.pool = partitions;
+    public void setPool(ArrayList<ZPool> pool) {
+        this.pool = pool;
     }
 
     public String getHostName() {

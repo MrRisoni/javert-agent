@@ -14,36 +14,6 @@ import java.util.ArrayList;
 public class DiskController {
 
 
-    @GetMapping("/zpool")
-    public ZPoolResponse ZFSPool() {
-        try {
-            ZPoolResponse presp = new ZPoolResponse();
-            presp.setHostName(Utilities.getHostName());
-            presp.setPartitions(FileSystemInfo.getZpoolStatus());
-            return presp;
-        } catch (Exception e) {
-            System.out.println("Error");
-            e.printStackTrace();
-            return null;
-
-        }
-    }
-
-
-    @GetMapping("/zfslist")
-    public PartitionResponse ZFSList() {
-        try {
-            PartitionResponse presp = new PartitionResponse();
-            presp.setHostName(Utilities.getHostName());
-            presp.setPartitions(FileSystemInfo.getZFSList());
-            return presp;
-        } catch (Exception e) {
-            System.out.println("Error");
-            e.printStackTrace();
-            return null;
-
-        }
-    }
 
 
     @GetMapping("/partitions")

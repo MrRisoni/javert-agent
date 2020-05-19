@@ -1,21 +1,21 @@
-package agent.disk;
+package agent.zfs;
 
 public class ZPool {
 
-    private String Name;
+    private String disk;
     private  String State;
 
-    public ZPool(String name, String state) {
-        Name = name;
+    public ZPool(String disk, String state) {
+        disk = disk;
         State = state;
     }
 
-    public String getName() {
-        return Name;
+    public String getDisk() {
+        return disk;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setDisk(String disk) {
+        this.disk = disk;
     }
 
     public String getState() {
