@@ -9,7 +9,7 @@ public class NeoFetchResponse extends AgentResponse {
     private String cpu;
     private String memory;
     private String cpuUsage;
-    private String memUsage;
+    private String diskUsage;
 
     public NeoFetchResponse() {
     }
@@ -62,11 +62,11 @@ public class NeoFetchResponse extends AgentResponse {
         this.cpuUsage = cpuUsage;
     }
 
-    public String getMemUsage() {
-        return memUsage;
+    public String getDiskUsage() {
+        return diskUsage;
     }
 
-    public void setMemUsage(String memUsage) {
-        this.memUsage = memUsage;
+    public void setDiskUsage(String diskUsage) {
+        this.diskUsage = diskUsage;
     }
 }

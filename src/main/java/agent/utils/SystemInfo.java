@@ -1,6 +1,7 @@
 package agent.utils;
 
 import agent.system.Kernel;
+import agent.system.Memory;
 import agent.system.NeoFetchResponse;
 import agent.system.SysProc;
 
@@ -9,6 +10,36 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class SystemInfo {
+
+
+    public static ArrayList<Memory> getMemoryInfo()
+    {
+        ArrayList<Memory> memList = new ArrayList<>();
+
+        try  {
+            String dfOut;
+            BufferedReader br = Utilities.runLinuxCommand("free -m");
+            int lineId =0;
+            while ((dfOut = br.readLine()) != null) {
+                if (lineId>0) {
+                    System.out.println("line: " + dfOut);
+                    String after = dfOut.trim().replaceAll(" +", " ");
+                    String[] split = after.split(" ");
+                    Memory mry = new Memory();
+                    mry.setName(split[0].replace(":",""));
+                    mry.setTotal(Integer.parseInt(split[1]));
+                    mry.setUsed(Integer.parseInt(split[2]));
+                    memList.add(mry);
+                }
+                lineId++; // skip text output
+            }
+            return memList;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return memList;
+        }
+    }
 
     public static ArrayList<SysProc> getSystemProccesses()
     {
@@ -96,12 +127,48 @@ public class SystemInfo {
 
     }
 
+    public static String getUptime()
+    {
+        String up ="";
+        try {
+            String dfOut;
+            BufferedReader br = Utilities.runLinuxCommand("uptime -p");
+            while ((dfOut = br.readLine()) != null) {
+                up = dfOut;//.replace("Description:","");
+            }
+            return up;
+        }catch (Exception ex) {
+            return up;
+        }
+    }
 
+    public static String getCPUModel()
+    {
+        String mdl ="";
+        try {
+            String dfOut;
+            BufferedReader br = Utilities.runLinuxCommand("cat /proc/cpuinfo | grep 'model name' | uniq");
+            while ((dfOut = br.readLine()) != null) {
+                System.out.println("CPU MODEL " + dfOut);
+                mdl = dfOut;
+            }
+            return mdl;
+        }catch (Exception ex) {
+            return ex.getMessage();
+        }
+    }
 
     public static NeoFetchResponse neofetch() {
         NeoFetchResponse nf = new NeoFetchResponse();
         nf.setHostName(Utilities.getHostName());
         nf.setOs(getOsName());
+        Kernel k = kernelData();
+        nf.setKernel(k.toString());
+        nf.setCpu(getCPUModel());
+        nf.setUptime(getUptime());
+        Memory m = getMemoryInfo().get(0);
+        nf.setMemory(m.getUsed()+"/" + m.getTotal());
+
         return nf;
     }
 }
