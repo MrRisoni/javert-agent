@@ -71,4 +71,16 @@ public class SysController {
 
         }
     }
+
+
+    @GetMapping("/neofetch")
+    public NeoFetchResponse neofetch()
+    {
+        try {
+          return SystemInfo.neofetch();
+        }
+        catch (Exception ex){
+            return null;
+        }
+    }
 }

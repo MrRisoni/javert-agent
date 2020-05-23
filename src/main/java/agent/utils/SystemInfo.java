@@ -1,6 +1,7 @@
 package agent.utils;
 
 import agent.system.Kernel;
+import agent.system.NeoFetchResponse;
 import agent.system.SysProc;
 
 import java.io.BufferedReader;
@@ -78,5 +79,29 @@ public class SystemInfo {
             return kern;
 
         }
+    }
+
+    public static String getOsName() {
+        String os ="";
+        try {
+            String dfOut;
+            BufferedReader br = Utilities.runLinuxCommand("lsb_release -a | grep Description");
+            while ((dfOut = br.readLine()) != null) {
+                os = dfOut;//.replace("Description:","");
+            }
+            return os;
+        } catch (Exception ex) {
+            return os;
+        }
+
+    }
+
+
+
+    public static NeoFetchResponse neofetch() {
+        NeoFetchResponse nf = new NeoFetchResponse();
+        nf.setHostName(Utilities.getHostName());
+        nf.setOs(getOsName());
+        return nf;
     }
 }
