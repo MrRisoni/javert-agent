@@ -47,7 +47,7 @@ public class SystemInfo {
         try {
             String dfOut;
 
-            BufferedReader br = Utilities.runLinuxCommand("ps aux");
+            BufferedReader br = Utilities.runLinuxCommand("ps auxc");
             System.out.println("print ps aux");
             int headers = 0;
 
