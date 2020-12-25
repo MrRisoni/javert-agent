@@ -4,18 +4,15 @@ import agent.system.Kernel;
 import agent.system.Memory;
 import agent.system.NeoFetchResponse;
 import agent.system.SysProc;
-
 import java.io.BufferedReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class SystemInfo {
 
-
     public static ArrayList<Memory> getMemoryInfo()
     {
         ArrayList<Memory> memList = new ArrayList<>();
-
         try  {
             String dfOut;
             BufferedReader br = Utilities.runLinuxCommand("free -m");
@@ -52,8 +49,6 @@ public class SystemInfo {
             int headers = 0;
 
             DecimalFormat decimals = new DecimalFormat("0.00");
-
-
             while ((dfOut = br.readLine()) != null) {
                 if (headers >0) {
                     System.out.println(dfOut);
@@ -83,12 +78,9 @@ public class SystemInfo {
 
     public static Kernel kernelData() {
         Kernel kern = new Kernel();
-
         try {
             String dfOut;
-
             BufferedReader br = Utilities.runLinuxCommand("uname -r");
-
             while ((dfOut = br.readLine()) != null) {
                 System.out.println("line: " + dfOut);
                 kern.setVersion(dfOut);
@@ -108,7 +100,6 @@ public class SystemInfo {
             System.out.println("Error");
             e.printStackTrace();
             return kern;
-
         }
     }
 
@@ -124,7 +115,6 @@ public class SystemInfo {
         } catch (Exception ex) {
             return os;
         }
-
     }
 
     public static String getUptime()

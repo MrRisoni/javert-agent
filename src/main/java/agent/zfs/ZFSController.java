@@ -20,10 +20,8 @@ public class ZFSController {
             System.out.println("Error");
           System.out.println(e.getMessage());
             return null;
-
         }
     }
-
 
     @GetMapping("/zfslist")
     public PartitionResponse ZFSList() {
@@ -36,7 +34,6 @@ public class ZFSController {
             System.out.println("Error");
             e.printStackTrace();
             return null;
-
         }
     }
 

@@ -1,21 +1,15 @@
 package agent.system;
 
 import agent.rest.AgentResponse;
+import lombok.Data;
 
 import java.util.ArrayList;
 
+@Data
 public class SysProcResponse extends AgentResponse {
 
     private ArrayList<SysProc> sysproclist;
 
     public SysProcResponse() {
-    }
-
-    public ArrayList<SysProc> getSysproclist() {
-        return sysproclist;
-    }
-
-    public void setSysproclist(ArrayList<SysProc> sysproclist) {
-        this.sysproclist = sysproclist;
     }
 }

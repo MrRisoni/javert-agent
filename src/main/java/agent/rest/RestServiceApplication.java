@@ -7,9 +7,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 //@ConditionalOnProperty(prefix = "agent.rest", name="enabled", havingValue="true", matchIfMissing = false)
 @SpringBootApplication(scanBasePackages = {"agent"})
 public class RestServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(RestServiceApplication.class, args);
     }
-
 }

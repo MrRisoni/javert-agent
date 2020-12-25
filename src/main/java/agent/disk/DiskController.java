@@ -13,9 +13,6 @@ import java.util.ArrayList;
 @RestController
 public class DiskController {
 
-
-
-
     @GetMapping("/partitions")
     public ArrayList<Partition> partitions() {
 
@@ -52,10 +49,6 @@ public class DiskController {
             System.out.println("Error");
             e.printStackTrace();
             return partitions;
-
         }
-
-
     }
-
 }

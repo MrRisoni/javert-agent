@@ -6,8 +6,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Map;
 
 public class Utilities {
@@ -34,7 +32,6 @@ public class Utilities {
 
                 String fileAsString = sb.toString();
 
-
                 Map<String, Object> obj = yaml.load(fileAsString);
 
                 for (Map.Entry<String, Object> e : obj.entrySet()) {
@@ -55,7 +52,6 @@ public class Utilities {
     }
 
     public static BufferedReader runLinuxCommand(String cmd) {
-
         try {
             p = Runtime.getRuntime().exec(cmd);
             return new BufferedReader(new InputStreamReader(p.getInputStream()));

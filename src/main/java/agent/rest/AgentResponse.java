@@ -1,18 +1,12 @@
 package agent.rest;
 
+import lombok.Data;
+
+@Data
 public class AgentResponse {
 
     private String hostName;
 
-
     public AgentResponse() {
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
     }
 }

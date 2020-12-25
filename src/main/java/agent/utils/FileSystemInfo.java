@@ -44,7 +44,6 @@ public class FileSystemInfo {
             System.out.println("Error");
             e.printStackTrace();
             return pool;
-
         }
     }
 
@@ -72,7 +71,6 @@ public class FileSystemInfo {
             System.out.println("Error");
             e.printStackTrace();
             return zfslist;
-
         }
     }
 }

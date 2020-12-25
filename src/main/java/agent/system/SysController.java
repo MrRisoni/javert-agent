@@ -30,24 +30,19 @@ public class SysController {
             System.out.println("Error");
             e.printStackTrace();
             return null;
-
         }
     }
 
-
     @GetMapping("/kernel")
     public Kernel kernelData() {
-
         try {
             return SystemInfo.kernelData();
         } catch (Exception e) {
             System.out.println("Error");
             e.printStackTrace();
             return null;
-
         }
     }
-
 
     @GetMapping("/neofetch")
     public NeoFetchResponse neofetch()
